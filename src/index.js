@@ -29,6 +29,8 @@ iconElement.innerHTML = `<img
                 alt=""
               />`; 
 
+getForecast(response.data.city);
+
 }
 
 function formatDate(date) {
@@ -66,7 +68,7 @@ searchCity("Paris");
 
 
 
-function displayForecast() {
+function displayForecast(response) {
 let forecastElement = document.querySelector("#forecast");
 
 let days = ['Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -93,3 +95,9 @@ forecastElement.innerHTML = forecastHTML;
 }
 
 displayForecast();
+
+function getForecast(city) {
+let apiKey = "8a3a6608o4abb33fba96t64a93c2140f";
+let apiURL = `https://api.shecodes.io/weather/v1/forecast?query = ${city}&key=${apiKey}&units=metric`;
+axios(apiURL),then(displayForecast);
+}
